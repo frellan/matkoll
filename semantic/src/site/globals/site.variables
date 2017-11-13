@@ -1,0 +1,153 @@
+/*-------------------
+     Fonts
+--------------------*/
+
+@headerFont        : 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+@pageFont          : 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+@fontSmoothing     : antialiased;
+
+@importGoogleFonts : true;
+@googleFontName    : 'Lato';
+@googleFontSizes   : '400,700,400italic,700italic';
+@googleFontFamily  : '@{googleFontName}:@{googleFontSizes}';
+
+/*-------------------
+    Base Sizes
+--------------------*/
+
+@emSize      : 14px;
+@fontSize    : 14px;
+
+/*-------------------
+    Site Colors
+--------------------*/
+
+/*---  Colors  ---*/
+@blue             : #6699CC;
+@green            : #99C794;
+@orange           : #F99157;
+@pink             : #C594C5;
+@purple           : #C594C5;
+@red              : #EC5f67;
+@teal             : #5FB3B3;
+@yellow           : #FAC863;
+
+@black            : #1B1C1D;
+@grey             : #CCCCCC;
+@white            : #FFFFFF;
+
+/*---  Brand Colors  ---*/
+@primaryColor        : #66615B;
+@secondaryColor      : #7A9E9F;
+
+/*-------------------
+      Page
+--------------------*/
+
+@pageBackground      : #F7F7F7;
+@pageOverflowX       : hidden;
+
+@fontSize            : 14px;
+@lineHeight          : 1.33;
+@textColor           : rgba(0, 0, 0, 0.8);
+
+@headerMargin        : 1em 0em 1rem;
+@paragraphMargin     : 0em 0em 1em;
+
+@linkColor           : @blue;
+@linkUnderline       : none;
+@linkHoverColor      : lighten( @linkColor, 5);
+
+@highlightBackground : rgba(255, 255, 160, 0.4);
+@highlightColor      : @textColor;
+
+/*-------------------
+Background Colors
+--------------------*/
+
+@subtleTransparentBlack : rgba(0, 0, 0, 0.03);
+@transparentBlack       : rgba(0, 0, 0, 0.05);
+@strongTransparentBlack : rgba(0, 0, 0, 0.10);
+
+@subtleTransparentWhite : rgba(255, 255, 255, 0.02);
+@transparentWhite       : rgba(255, 255, 255, 0.05);
+@strongTransparentWhite : rgba(255, 255, 255, 0.07);
+
+/*-------------------
+    Extra Colors
+--------------------*/
+
+/*---  Light Colors  ---*/
+
+@lightBlack:      : #CCCCCC;
+@lightBlue        : #54C8FF;
+@lightGreen       : #2ECC40;
+@lightOrange      : #FF851B;
+@lightPink        : #FF8EDF;
+@lightPurple      : #CDC6FF;
+@lightRed         : #FF695E;
+@lightTeal        : #6DFFFF;
+@lightYellow      : #FFE21F;
+
+@lightPrimaryColor   : @lightBlue;
+@lightSecondaryColor : @lightBlack;
+
+/*---   Neutrals  ---*/
+@fullBlack        : #000000;
+@lightBlack       : #333333;
+@darkGrey         : #AAAAAA;
+@lightGrey        : #DCDDDE;
+@offWhite         : #FAFAFA;
+@darkWhite        : #F0F0F0;
+
+/*--- Colored Backgrounds ---*/
+@blueBackground   : #DFF0FF;
+@greenBackground  : #EBFFED;
+@orangeBackground : #FFEDDE;
+@pinkBackground   : #FFE3FB;
+@purpleBackground : #EAE7FF;
+@redBackground    : #FFE8E6;
+@tealBackground   : #E9FFFF;
+@yellowBackground : #FFF8DB;
+
+/*--- Colored Text ---*/
+@blueTextColor    : @blue;
+@orangeTextColor  : @orange;
+@pinkTextColor    : @pink;
+@purpleTextColor  : @purple;
+@redTextColor     : @red;
+@greenTextColor   : #1EBC30; // Green is difficult to read
+@tealTextColor    : #10A3A3; // Teal text is difficult to read
+@yellowTextColor  : #B58105; // Yellow text is difficult to read
+
+/*-------------------
+  Emotive Colors
+--------------------*/
+
+/* Positive */
+@positiveColor           : @green;
+@positiveBackgroundColor : #EEFFE7;
+@positiveBorderColor     : #B7CAA7;
+@positiveHeaderColor     : #356E36;
+@positiveTextColor       : #3C763D;
+
+/* Negative */
+@negativeColor           : @red;
+@negativeBackgroundColor : #FFF0F0;
+@negativeBorderColor     : #DBB1B1;
+@negativeHeaderColor     : #912D2B;
+@negativeTextColor       : #A94442;
+
+/* Info */
+@infoColor              : #31CCEC;
+@infoBackgroundColor    : #E9FAFF;
+@infoBorderColor        : #AAD6DF;
+@infoHeaderColor        : #297187;
+@infoTextColor          : #337B92;
+
+/* Warning */
+@warningColor           : #F2C037;
+@warningBorderColor     : #D9CAAB;
+@warningBackgroundColor : #FFFBE6;
+@warningHeaderColor     : #825C01;
+@warningTextColor       : #876A38;
