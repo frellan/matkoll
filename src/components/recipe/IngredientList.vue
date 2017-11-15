@@ -5,7 +5,7 @@
       <h2 class="centered">
         {{ section.title.titleize() }}
       </h2>
-      <div class="ui two stackable cards">
+      <div class="ui one stackable cards">
         <ingredient
           v-for="ingredient in section.ingredients"
           :key="ingredient.original"
@@ -15,11 +15,11 @@
     </div>
   </div>
   <div class="section" v-if="ingredients">
-    <div class="ui two stackable cards">
+    <div class="ui one stackable cards">
       <ingredient
         v-for="ingredient in ingredients"
         :key="ingredient.original"
-        :ingredient="ing"
+        :ingredient="ingredient"
       ></ingredient>
     </div>
   </div>
