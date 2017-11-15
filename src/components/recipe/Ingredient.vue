@@ -15,7 +15,7 @@
       {{ ingredient.amount.quantity }} {{ ingredient.amount.unit }}
     </div>
   </div>
-  <table class="ui compact padded table nutrient-table">
+  <!-- <table class="ui compact padded celled table nutrient-table">
     <thead>
       <tr>
         <th>Näringsämne</th>
@@ -25,17 +25,27 @@
     </thead>
     <tbody>
       <tr>
-        <td>John</td>
-        <td>Approved</td>
-        <td>Approved</td>
+        <td>Kalorier</td>
+        <td>{{ kcal.value.toFixed(2) }} {{ kcal.unit }}</td>
+        <td>n/a</td>
       </tr>
       <tr>
-        <td>Jamie</td>
-        <td>Approved</td>
-        <td>Approved</td>
+        <td>Kolhydrater</td>
+        <td>{{ carbs.value.toFixed(2) }} {{ carbs.unit }}</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Protein</td>
+        <td>{{ protein.value.toFixed(2) }} {{ protein.unit }}</td>
+        <td class="positive">n/a</td>
+      </tr>
+      <tr>
+        <td>Fett</td>
+        <td>{{ fat.value.toFixed(2) }} {{ fat.unit }}</td>
+        <td class="negative">n/a</td>
       </tr>
     </tbody>
-  </table>
+  </table> -->
 </div>
 </template>
 
