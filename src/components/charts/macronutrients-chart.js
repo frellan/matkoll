@@ -2,11 +2,12 @@ import { HorizontalBar } from 'vue-chartjs'
 
 export default {
   extends: HorizontalBar,
-  name: 'recipe-content-chart',
+  name: 'macronutrients-chart',
+  props: ['nutrients'],
   data () {
     return {
       data: {
-        labels: ['Energi'],
+        labels: [''],
         datasets: [
           {
             label: 'Kolhydrater',
@@ -29,6 +30,10 @@ export default {
         ]
       },
       options: {
+        tooltips: false,
+        legend: {
+          display: false
+        },
         scales: {
           xAxes: [{
             display: false,
@@ -39,10 +44,19 @@ export default {
             stacked: true
           }]
         },
+        plugins: {
+          datalabels: {
+            color: 'white',
+            font: {
+              size: '16',
+              weight: 'bold'
+            },
+            formatter: (value) => value.toFixed(1) + '%'
+          }
+        }
       }
     }
   },
-  props: ['nutrients'],
   mounted() {
     this.renderChart(this.data, this.options)
   }

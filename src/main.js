@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import App from './app'
+import 'chartjs-plugin-datalabels'
 
 import router from './router'
 

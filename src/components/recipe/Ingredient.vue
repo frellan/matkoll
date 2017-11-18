@@ -52,9 +52,7 @@
 <script>
 export default {
   name: 'ingredient',
-  props: [
-    'ingredient'
-  ],
+  props: ['ingredient'],
   computed: {
     kcal: function () {
       var value = this.ingredient.nutrients
@@ -85,6 +83,7 @@ export default {
   padding-bottom: 0.1em !important;
 }
 .comment {
+  font-size: 0.8em;
   color: rgba(0,0,0,.4);
 }
 .statistic {
