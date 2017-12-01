@@ -1,30 +1,30 @@
 export default {
   nutrients: [
     // Vitamins
-    'vitamin_a',
-    'vitamin_b6',
-    'vitamin_b12',
-    'vitamin_c',
-    'vitamin_d',
-    'vitamin_e',
-    'vitamin_k',
-    'thiamine',
-    'riboflavin',
-    'niacin',
-    'niacin_eq',
+    'VITAMIN_A',
+    'VITAMIN_B6',
+    'VITAMIN_B12',
+    'VITAMIN_C',
+    'VITAMIN_D',
+    'VITAMIN_E',
+    'VITAMIN_K',
+    'THIAMINE',
+    'RIBOFLAVIN',
+    'NIACIN',
+    // 'NIACIN_EQ',
     // Minerals
-    'folate',
-    'phosphorus',
-    'iodine',
-    'iron',
-    'calcium',
-    'potassium',
-    'magnesium',
-    'sodium',
-    'selenium',
-    'zinc',
+    // 'FOLATE',
+    'PHOSPHORUS',
+    'IODINE',
+    'IRON',
+    'CALCIUM',
+    'POTASSIUM',
+    'MAGNESIUM',
+    // 'SODIUM',
+    // 'SELENIUM',
+    'ZINC',
     // Other
-    'salt',
-    'alcohol'
+    // 'SALT',
+    // 'ALCOHOL'
   ]
 }

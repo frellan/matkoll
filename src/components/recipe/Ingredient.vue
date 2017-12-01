@@ -3,7 +3,7 @@
   <div class="content">
     <img
       class="right floated mini ui image"
-      :src="'public/icons/' + ingredient.food.category.name + '.png'"
+      :src="'public/icons/' + ingredient.food.subCategory.name + '.png'"
       width="48"
       height="48"
     >
