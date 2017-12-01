@@ -11,19 +11,19 @@ export default {
         datasets: [
           {
             label: 'Kolhydrater',
-            data: [67.8],
+            data: [],
             backgroundColor: '#99C794',
             hoverBackgroundColor: '#99C794'
           },
           {
             label: 'Fett',
-            data: [20.7],
+            data: [],
             backgroundColor: '#FAC863',
             hoverBackgroundColor: '#FAC863'
           },
           {
             label: 'Protein',
-            data: [11.4],
+            data: [],
             backgroundColor: '#6699CC',
             hoverBackgroundColor: '#6699CC'
           }
@@ -32,7 +32,7 @@ export default {
       options: {
         tooltips: false,
         legend: {
-          display: false
+          display: true
         },
         scales: {
           xAxes: [{
@@ -56,6 +56,15 @@ export default {
         }
       }
     }
+  },
+  created() {
+    const carbs = this.nutrients.find(n => n.name === 'CARBOHYDRATES').value.quantity
+    const protein = this.nutrients.find(n => n.name === 'PROTEIN').value.quantity
+    const fat = this.nutrients.find(n => n.name === 'FAT').value.quantity
+    const sum = carbs + protein + fat
+    this.data.datasets[0].data.push(carbs / sum * 100)
+    this.data.datasets[1].data.push(fat / sum * 100)
+    this.data.datasets[2].data.push(protein / sum * 100)
   },
   mounted() {
     this.renderChart(this.data, this.options)
