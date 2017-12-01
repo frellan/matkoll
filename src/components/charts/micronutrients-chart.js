@@ -6,7 +6,8 @@ export default {
   name: 'micronutrients-chart',
   props: [
     'color',
-    'nutrients'
+    'nutrients',
+    'portions'
   ],
   data() {
     return {
@@ -23,6 +24,7 @@ export default {
       options: {
         tooltips: false,
         legend: {
+          display: false,
           position: 'bottom'
         },
         scales: {
@@ -41,8 +43,24 @@ export default {
         },
         plugins: {
           datalabels: {
-            color: 'rgba(0,0,0,.8)',
-            align: 'end',
+            color: (context) => {
+              const i = context.dataIndex
+              var value = context.dataset.data[i]
+              if (this.showLabelInside(value, context.dataset.data)) {
+                return '#FFFFFF'
+              } else {
+                return 'rgba(0,0,0,.8)'
+              }
+            },
+            align: (context) => {
+              const i = context.dataIndex
+              var value = context.dataset.data[i]
+              if (this.showLabelInside(value, context.dataset.data)) {
+                return 'start'
+              } else {
+                return 'end'
+              }
+            },
             anchor: 'end',
             font: {
               size: '16',
@@ -59,14 +77,19 @@ export default {
     }
   },
   created() {
-    const vitamins = this.nutrients
-      .filter(n => Config.nutrients.includes(n.name))
-    vitamins.forEach(vitamin => {
-      this.data.labels.push(vitamin.displayName.titleize())
-      this.data.datasets[0].data.push(vitamin.value)
-    })
+    this.nutrients
+      .filter(nutrient => Config.nutrients.includes(nutrient.name))
+      .forEach(nutrient => {
+        this.data.labels.push(nutrient.displayName.titleize())
+        this.data.datasets[0].data.push(nutrient.percentOfDri / this.portions)
+      })
   },
   mounted() {
     this.renderChart(this.data, this.options)
+  },
+  methods: {
+    showLabelInside: (value, values) => {
+      return value / values.max() > 0.8
+    }
   }
 }
