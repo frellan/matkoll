@@ -23,6 +23,9 @@ export default {
       },
       options: {
         tooltips: false,
+        hover: {
+          mode: null
+        },
         legend: {
           display: false
         },
@@ -82,29 +85,43 @@ export default {
       }
     }
   },
-  created() {
-    this.nutrients
-      .filter(nutrient => Config.nutrients.includes(nutrient.name))
-      .forEach(nutrient => {
-        this.data.labels.push(nutrient.displayName.titleize())
-        this.data.datasets[0].data.push(nutrient.percentOfDri / this.portions)
-      })
-  },
   mounted() {
-    this.options.plugins.datalabels.formatter = (value, context) => {
-      const i = context.dataIndex
-      const label = context.chart.config.data.labels[i]
-      const nutrient = this.nutrients
-        .filter(nutrient => Config.nutrients.includes(nutrient.name))[i]
-      const quantity = nutrient.value.quantity.toFixed(0)
-      const unit = nutrient.value.unit.displayName
-      return `${label} (${quantity}${unit})`
-    }
+    this.updateData()
+    this.setLabels()
     this.renderChart(this.data, this.options)
   },
   methods: {
+    updateData: function () {
+      this.data.labels = []
+      this.data.datasets[0].data = []
+      this.nutrients
+        .filter(nutrient => Config.nutrients.includes(nutrient.name))
+        .forEach(nutrient => {
+          this.data.labels.push(nutrient.displayName.titleize())
+          this.data.datasets[0].data.push(nutrient.percentOfDri / this.portions)
+        })
+    },
+    setLabels: function () {
+      this.options.plugins.datalabels.formatter = (value, context) => {
+        const i = context.dataIndex
+        const label = context.chart.config.data.labels[i]
+        const nutrient = this.nutrients
+          .filter(nutrient => Config.nutrients.includes(nutrient.name))[i]
+        const quantity = nutrient.value.quantity.toFixed(0)
+        const unit = nutrient.value.unit.displayName
+        return `${label} (${quantity}${unit})`
+      }
+    },
     showLabelInside: (value, values) => {
       return value > (values.max() / 5) + values.min()
+    }
+  },
+  watch: {
+    nutrients: function (nutrients) {
+      this.nutrients = nutrients
+      this.updateData()
+      this.setLabels()
+      this.renderChart(this.data, this.options)
     }
   }
 }
