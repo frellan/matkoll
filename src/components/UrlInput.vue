@@ -13,29 +13,20 @@
       </div>
     </div>
   </div>
-  <div v-if="showRecipe">
-    <recipe :recipe="recipe"></recipe>
-  </div>
 </div>
 </template>
 
 <script>
 import axios from 'axios'
-import Recipe from './recipe/Recipe'
 
 export default {
   name: 'url-input',
   data() {
     return {
       url: '',
-      recipe: {},
       isLoading: false,
-      isError: false,
-      showRecipe: false
+      isError: false
     }
-  },
-  components: {
-    Recipe
   },
   methods: {
     redirect() {
@@ -43,18 +34,17 @@ export default {
     },
     fetchRecipe() {
       this.url = this.$route.query.url
-      this.showRecipe = false
       this.isError = false
       this.isLoading = true
       axios.get('http://localhost:9000/parseUrl?url=' + this.url)
         .then((response) => {
-          this.recipe = response.data
-          this.showRecipe = true
           this.isLoading = false
+          this.$emit('recipeFetched', response.data)
         })
         .catch(() => {
           this.isError = true
           this.isLoading = false
+          this.$emit('error')
         })
     }
   },
