@@ -12,27 +12,27 @@ export default {
           {
             label: 'Kolhydrater',
             data: [],
-            backgroundColor: '#99C794',
-            hoverBackgroundColor: '#99C794'
-          },
-          {
-            label: 'Fett',
-            data: [],
             backgroundColor: '#FAC863',
             hoverBackgroundColor: '#FAC863'
           },
           {
+            label: 'Fett',
+            data: [],
+            backgroundColor: '#EC5F67',
+            hoverBackgroundColor: '#EC5F67'
+          },
+          {
             label: 'Protein',
             data: [],
-            backgroundColor: '#6699CC',
-            hoverBackgroundColor: '#6699CC'
+            backgroundColor: '#99C794',
+            hoverBackgroundColor: '#99C794'
           }
         ]
       },
       options: {
         tooltips: false,
         legend: {
-          display: true
+          display: false
         },
         scales: {
           xAxes: [{
