@@ -24,21 +24,32 @@ export default {
       options: {
         tooltips: false,
         legend: {
-          display: false,
-          position: 'bottom'
+          display: false
         },
         scales: {
           gridLines: {
             drawOnChartArea: true,
             drawTicks: true
           },
-          yAxes: [{
-            display: false,
+          xAxes: [{
             ticks: {
-              autoSkip: false,
-              maxRotation: 45,
-              minRotation: 45
+              callback: function(value) {
+                return `${value}%`
+              }
             }
+          }],
+          yAxes: [{
+            display: false
+          }]
+        },
+        annotation: {
+          annotations: [{
+            drawTime: 'beforeDatasetsDraw',
+            type: 'line',
+            scaleID: 'x-axis-0',
+            value: 100,
+            borderColor: 'black',
+            borderWidth: 3
           }]
         },
         plugins: {
@@ -69,7 +80,7 @@ export default {
             formatter: (value, context) => {
               const i = context.dataIndex
               const label = context.chart.config.data.labels[i]
-              return `${label} (${value.toFixed(1)}%)`
+              return label
             }
           }
         }
@@ -89,7 +100,7 @@ export default {
   },
   methods: {
     showLabelInside: (value, values) => {
-      return value / values.max() > 0.8
+      return value > (values.max() / 6) + values.min()
     }
   }
 }
