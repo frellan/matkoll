@@ -1,8 +1,13 @@
 <template>
 <div>
   <h1 class="centered recipe-header">{{ recipe.title }}</h1>
+  <h4 class="centered">
+    <i class="pie chart icon"></i>{{ recipe.portions }} portioner
+    &thinsp;
+    <i class="external icon"></i>{{ sourceSite }}
+  </h4>
   <div class="ui grid">
-    <div class="six wide column">
+    <div class="five wide column">
       <h4 class="ui horizontal divider header">
         <i class="tag icon"></i>
         Ingredienser
@@ -14,36 +19,76 @@
         <ingredient-list :ingredients="recipe.ingredients"></ingredient-list>
       </div>
     </div>
+    <div class="one wide column"></div>
     <div class="ten wide column">
       <h4 class="ui horizontal divider header">
         <i class="signal icon"></i>
         Summering
       </h4>
-      <div class="ui green inverted segment">
-        <div class="ui inverted statistic">
-          <div class="value">
-            <i class="leaf icon"></i> {{ co2.toFixed(2) }} kg
+      <div class="ui horizontal segments">
+        <div class="ui centered segment">
+          <div class="ui small statistic">
+            <div class="value">
+              <i class="orange lightning icon"></i> {{ kcal.toFixed(0) }}
+            </div>
+            <div class="label">Kcal per portion</div>
           </div>
-          <div class="label">co2 per portion</div>
+        </div>
+        <div class="ui centered segment">
+          <div class="ui small statistic">
+            <div class="value">
+              <i class="green leaf icon"></i> {{ co2.toFixed(2) }}
+            </div>
+            <div class="label">kg co2 per portion</div>
+          </div>
         </div>
       </div>
       <h4 class="ui horizontal divider header">
-        <i class="cube icon"></i>
-        Makronutrienter
+        <i class="cube icon"></i>Makronutrienter
       </h4>
       <macronutrients-chart :height="50" :nutrients="recipe.nutrients"></macronutrients-chart>
+      <table class="ui celled table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Status</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>No Name Specified</td>
+            <td>Unknown</td>
+            <td class="negative">None</td>
+          </tr>
+          <tr class="positive">
+            <td>Jimmy</td>
+            <td><i class="icon checkmark"></i> Approved</td>
+            <td>None</td>
+          </tr>
+          <tr>
+            <td>Jamie</td>
+            <td>Unknown</td>
+            <td class="positive"><i class="icon close"></i> Requires call</td>
+          </tr>
+          <tr class="negative">
+            <td>Jill</td>
+            <td>Unknown</td>
+            <td>None</td>
+          </tr>
+        </tbody>
+      </table>
       <h4 class="ui horizontal divider header">
-        <i class="cubes icon"></i>
-        Mikronutrienter
+        <i class="cubes icon"></i>Mikronutrienter
       </h4>
-      <h2 class="centered">Vitaminer (% av DRI per portion)</h2>
+      <h3 class="centered">Vitaminer (% av DRI per portion)</h3>
       <micronutrients-chart
         :height="180"
         :color="'#F99157'"
         :nutrients="vitamins"
         :portions="recipe.portions"
       ></micronutrients-chart>
-      <h2 class="centered">Mineraler (% av DRI per portion)</h2>
+      <h3 class="centered">Mineraler (% av DRI per portion)</h3>
       <micronutrients-chart
         :height="126"
         :color="'#C594C5'"
@@ -71,6 +116,16 @@ export default {
     MicronutrientsChart
   },
   computed: {
+    kcal: function () {
+      const value = this.recipe.nutrients
+        .find(n => n.name === 'ENERGY_KCAL').value.quantity
+      return value / this.recipe.portions
+    },
+    salt: function () {
+      const value = this.recipe.nutrients
+        .find(n => n.name === 'SALT').value.quantity
+      return value / this.recipe.portions
+    },
     co2: function () {
       return this.recipe.co2.quantity / this.recipe.portions
     },
@@ -79,6 +134,11 @@ export default {
     },
     minerals: function () {
       return this.recipe.nutrients.filter(n => n.type === 'MINERAL')
+    },
+    sourceSite: function () {
+      const urlRegEx =
+        new RegExp('^(?:https?:)?(?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n]+)')
+      return this.recipe.url.match(urlRegEx)[1]
     }
   }
 }
@@ -87,6 +147,5 @@ export default {
 <style>
 .recipe-header {
   font-size: 36px;
-  margin-bottom: 1em;
 }
 </style>
