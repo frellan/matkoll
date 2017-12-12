@@ -46,38 +46,11 @@
       <h4 class="ui horizontal divider header">
         <i class="cube icon"></i>Makronutrienter
       </h4>
-      <macronutrients-chart :height="50" :nutrients="recipe.nutrients"></macronutrients-chart>
-      <table class="ui celled table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Status</th>
-            <th>Notes</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>No Name Specified</td>
-            <td>Unknown</td>
-            <td class="negative">None</td>
-          </tr>
-          <tr class="positive">
-            <td>Jimmy</td>
-            <td><i class="icon checkmark"></i> Approved</td>
-            <td>None</td>
-          </tr>
-          <tr>
-            <td>Jamie</td>
-            <td>Unknown</td>
-            <td class="positive"><i class="icon close"></i> Requires call</td>
-          </tr>
-          <tr class="negative">
-            <td>Jill</td>
-            <td>Unknown</td>
-            <td>None</td>
-          </tr>
-        </tbody>
-      </table>
+      <macronutrients-chart :height="30" :nutrients="recipe.nutrients"></macronutrients-chart>
+      <macronutrient-table
+        :nutrients="recipe.nutrients"
+        :portions="recipe.portions"
+      ></macronutrient-table>
       <h4 class="ui horizontal divider header">
         <i class="cubes icon"></i>Mikronutrienter
       </h4>
@@ -101,6 +74,7 @@
 </template>
 
 <script>
+import MacronutrientTable from './MacronutrientTable'
 import IngredientList from './IngredientList'
 import MacronutrientsChart from '../charts/macronutrients-chart'
 import MicronutrientsChart from '../charts/micronutrients-chart'
@@ -111,6 +85,7 @@ export default {
     'recipe'
   ],
   components: {
+    MacronutrientTable,
     IngredientList,
     MacronutrientsChart,
     MicronutrientsChart
