@@ -48,8 +48,8 @@ export default {
             type: 'line',
             scaleID: 'x-axis-0',
             value: 100,
-            borderColor: 'black',
-            borderWidth: 3
+            borderColor: this.color,
+            borderWidth: 2
           }]
         },
         plugins: {
@@ -74,13 +74,8 @@ export default {
             },
             anchor: 'end',
             font: {
-              size: '16',
+              size: '13',
               weight: 'bold'
-            },
-            formatter: (value, context) => {
-              const i = context.dataIndex
-              const label = context.chart.config.data.labels[i]
-              return label
             }
           }
         }
@@ -96,11 +91,20 @@ export default {
       })
   },
   mounted() {
+    this.options.plugins.datalabels.formatter = (value, context) => {
+      const i = context.dataIndex
+      const label = context.chart.config.data.labels[i]
+      const nutrient = this.nutrients
+        .filter(nutrient => Config.nutrients.includes(nutrient.name))[i]
+      const quantity = nutrient.value.quantity.toFixed(0)
+      const unit = nutrient.value.unit.displayName
+      return `${label} (${quantity}${unit})`
+    }
     this.renderChart(this.data, this.options)
   },
   methods: {
     showLabelInside: (value, values) => {
-      return value > (values.max() / 6) + values.min()
+      return value > (values.max() / 5) + values.min()
     }
   }
 }
